@@ -22,7 +22,7 @@ public class SpawnerPopulator extends MazeRoomBlockPopulator {
     /** General populator constants. */
 	private static final int LAYER_MIN = 1;
 	private static final int LAYER_MAX = 7;
-	private static final float ROOM_CHANCE = .06f;
+	private static final float ROOM_CHANCE = .08f;
 
     /** Populator constants. */
 	private static final double SPAWN_DISTANCE_MIN = 2; // Chunks

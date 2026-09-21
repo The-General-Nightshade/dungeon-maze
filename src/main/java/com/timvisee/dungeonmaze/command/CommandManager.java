@@ -126,6 +126,63 @@ public class CommandManager {
                 dungeonMazeCommand);
         listWorldCommand.setCommandPermissions("dungeonmaze.command.listworlds", CommandPermissions.DefaultPermission.OP_ONLY);
 
+        // Register the loot command
+        CommandDescription lootCommand = new CommandDescription(
+                new LootCommand(),
+                new ArrayList<String>() {{
+                    add("loot");
+                }},
+                "Open dungeon loot table",
+                "Open the loot table GUI and manage Dungeon Maze loot items.",
+                dungeonMazeCommand);
+        lootCommand.setMaximumArguments(false);
+
+        // Register the wand command
+        CommandDescription wandCommand = new CommandDescription(
+                new WandCommand(),
+                new ArrayList<String>() {{
+                    add("wand");
+                }},
+                "Give a portal wand",
+                "Give the player the portal wand used to create and remove dungeon portals.",
+                dungeonMazeCommand);
+        wandCommand.setMaximumArguments(false);
+
+        // Register the portal command
+        CommandDescription portalCommand = new CommandDescription(
+                new PortalCommand(),
+                new ArrayList<String>() {{
+                    add("portal");
+                }},
+                "Portal management",
+                "Create, remove, and manage dungeons portals.",
+                dungeonMazeCommand);
+        portalCommand.setMaximumArguments(false);
+
+        CommandDescription portalCreateCommand = new CommandDescription(
+                new PortalCreateCommand(),
+                new ArrayList<String>() {{
+                    add("create");
+                }},
+                "Create a portal",
+                "Create a portal between the current world and a dungeon world.",
+                portalCommand);
+        portalCreateCommand.addArgument(new CommandArgumentDescription("name", "The portal name to create.", false));
+        portalCreateCommand.addArgument(new CommandArgumentDescription("dungeon_name", "The dungeon world to link this portal to.", false));
+        portalCreateCommand.addArgument(new CommandArgumentDescription("target_world", "Optional target world override, such as overworld.", true));
+
+        CommandDescription portalRemoveCommand = new CommandDescription(
+                new PortalRemoveCommand(),
+                new ArrayList<String>() {{
+                    add("remove");
+                    add("delete");
+                    add("rm");
+                }},
+                "Remove a portal",
+                "Remove a portal by its name.",
+                portalCommand);
+        portalRemoveCommand.addArgument(new CommandArgumentDescription("name", "The portal name to remove.", false));
+
         // Register the reload command
         CommandDescription reloadCommand = new CommandDescription(
                 new ReloadCommand(),

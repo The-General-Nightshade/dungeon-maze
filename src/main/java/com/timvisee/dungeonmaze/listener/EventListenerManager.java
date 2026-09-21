@@ -21,6 +21,12 @@ public class EventListenerManager {
     private PluginListener pluginListener;
     /** World listener instance. */
     private WorldListener worldListener;
+    /** Loot inventory listener instance. */
+    private LootInventoryListener lootInventoryListener;
+    /** Dungeon mob boost listener instance. */
+    private DungeonMobBoostListener dungeonMobBoostListener;
+    /** Portal listener instance. */
+    private PortalListener portalListener;
 
     /**
      * Constructor.
@@ -51,6 +57,9 @@ public class EventListenerManager {
         this.playerListener = new PlayerListener();
         this.pluginListener = new PluginListener();
         this.worldListener = new WorldListener();
+        this.lootInventoryListener = new LootInventoryListener();
+        this.dungeonMobBoostListener = new DungeonMobBoostListener();
+        this.portalListener = new PortalListener();
 
         // Set whether the manager is initialized
         this.init = true;
@@ -110,6 +119,9 @@ public class EventListenerManager {
         pm.registerEvents(this.playerListener, DungeonMaze.instance);
         pm.registerEvents(this.pluginListener, DungeonMaze.instance);
         pm.registerEvents(this.worldListener, DungeonMaze.instance);
+        pm.registerEvents(this.lootInventoryListener, DungeonMaze.instance);
+        pm.registerEvents(this.dungeonMobBoostListener, DungeonMaze.instance);
+        pm.registerEvents(this.portalListener, DungeonMaze.instance);
         return true;
     }
 

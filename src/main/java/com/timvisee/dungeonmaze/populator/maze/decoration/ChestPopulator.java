@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.timvisee.dungeonmaze.Core;
+import com.timvisee.dungeonmaze.loot.LootTableManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
@@ -90,135 +92,32 @@ public class ChestPopulator extends MazeRoomBlockPopulator {
 	}
 
 	private List<ItemStack> generateChestContents(Random random) {
-		// TODO: Use class for this, to also add feature to re loot chests
-        // Create a list to put the item stacks in
-		List<ItemStack> items = new ArrayList<>();
-
-        // Add items to the stack
-		if(random.nextInt(100) < 80)
-			items.add(MaterialUtils.createItemStack(Material.TORCH, 4, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.TORCH, 8, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.TORCH, 12, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.APPLE, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.ARROW, 16, (short) 0));
-		if(random.nextInt(100) < 5)
-			items.add(MaterialUtils.createItemStack(Material.ARROW, 24, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.DIAMOND, 1, (short) 0));
-		if(random.nextInt(100) < 50)
-			items.add(MaterialUtils.createItemStack(Material.IRON_INGOT, 1, (short) 0));
-		if(random.nextInt(100) < 60)
-			items.add(MaterialUtils.createItemStack(Material.GOLD_INGOT, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.IRON_SWORD, 1, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.WOODEN_SWORD, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.STONE_SWORD, 1, (short) 0));
-		if(random.nextInt(100) < 80)
-			items.add(MaterialUtils.createItemStack(Material.WHEAT, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.WHEAT, 2, (short) 0));
-		if(random.nextInt(100) < 5)
-			items.add(MaterialUtils.createItemStack(Material.WHEAT, 3, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.BREAD, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.LEATHER_HELMET, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.LEATHER_CHESTPLATE, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.LEATHER_LEGGINGS, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.LEATHER_BOOTS, 1, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.CHAINMAIL_HELMET, 1, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.CHAINMAIL_CHESTPLATE, 1, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.CHAINMAIL_LEGGINGS, 1, (short) 0));
-		if(random.nextInt(100) < 40)
-			items.add(MaterialUtils.createItemStack(Material.CHAINMAIL_BOOTS, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.IRON_HELMET, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.IRON_CHESTPLATE, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.IRON_LEGGINGS, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.IRON_BOOTS, 1, (short) 0));
-		if(random.nextInt(100) < 30)
-			items.add(MaterialUtils.createItemStack(Material.FLINT, 3, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.FLINT, 5, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.FLINT, 7, (short) 0));
-		if(random.nextInt(100) < 80)
-			items.add(MaterialUtils.createItemStack(Material.PORKCHOP, 1, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.COOKED_PORKCHOP, 1, (short) 0));
-		if(random.nextInt(100) < 15)
-			items.add(MaterialUtils.createItemStack(Material.REDSTONE, 5, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.REDSTONE, 8, (short) 0));
-		if(random.nextInt(100) < 5)
-			items.add(MaterialUtils.createItemStack(Material.REDSTONE, 13, (short) 0));
-		if(random.nextInt(100) < 3)
-			items.add(MaterialUtils.createItemStack(Material.REDSTONE, 21, (short) 0));
-		if(random.nextInt(100) < 10)
-			items.add(MaterialUtils.createItemStack(Material.COMPASS, 1, (short) 0));
-		if(random.nextInt(100) < 80)
-			items.add(MaterialUtils.createItemStack(Material.COD, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.COOKED_COD, 1, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.INK_SAC, 1, (short) 3));
-		if(random.nextInt(100) < 5)
-			items.add(MaterialUtils.createItemStack(Material.CAKE, 1, (short) 0));
-		if(random.nextInt(100) < 80)
-			items.add(MaterialUtils.createItemStack(Material.COOKIE, 3, (short) 0));
-		if(random.nextInt(100) < 20)
-			items.add(MaterialUtils.createItemStack(Material.COOKIE, 5, (short) 0));
-		
-		int itemCountInChest;
-		switch (random.nextInt(8)) {
-		case 0:
-			itemCountInChest = 2;
-			break;
-		case 1:
-			itemCountInChest = 2;
-			break;
-		case 2:
-			itemCountInChest = 3;
-			break;
-		case 3:
-			itemCountInChest = 3;
-			break;
-		case 4:
-			itemCountInChest = 3;
-			break;
-		case 5:
-			itemCountInChest = 4;
-			break;
-		case 6:
-			itemCountInChest = 4;
-			break;
-		case 7:
-			itemCountInChest = 5;
-			break;
-		default:
-			itemCountInChest = 3;
+		LootTableManager.getInstance().load();
+		int minItems = Math.max(0, Core.getConfigHandler().lootMinItems);
+		int maxItems = Math.max(minItems, Core.getConfigHandler().lootMaxItems);
+		List<ItemStack> items = LootTableManager.getInstance().generateChestContents(random, minItems, maxItems);
+		if(items.isEmpty()) {
+			items = new ArrayList<>();
+			if(random.nextInt(100) < 80)
+				items.add(MaterialUtils.createItemStack(Material.TORCH, 4, (short) 0));
+			if(random.nextInt(100) < 40)
+				items.add(MaterialUtils.createItemStack(Material.TORCH, 8, (short) 0));
+			if(random.nextInt(100) < 20)
+				items.add(MaterialUtils.createItemStack(Material.TORCH, 12, (short) 0));
+			if(random.nextInt(100) < 40)
+				items.add(MaterialUtils.createItemStack(Material.APPLE, 1, (short) 0));
+			if(random.nextInt(100) < 10)
+				items.add(MaterialUtils.createItemStack(Material.ARROW, 16, (short) 0));
+			if(random.nextInt(100) < 5)
+				items.add(MaterialUtils.createItemStack(Material.ARROW, 24, (short) 0));
+			if(random.nextInt(100) < 20)
+				items.add(MaterialUtils.createItemStack(Material.DIAMOND, 1, (short) 0));
+			if(random.nextInt(100) < 50)
+				items.add(MaterialUtils.createItemStack(Material.IRON_INGOT, 1, (short) 0));
+			if(random.nextInt(100) < 60)
+				items.add(MaterialUtils.createItemStack(Material.GOLD_INGOT, 1, (short) 0));
 		}
-		
-		// Create a list of item contents with the right amount of items
-		List<ItemStack> newContents = new ArrayList<>();
-		for (int i = 0; i < itemCountInChest; i++)
-			newContents.add(items.get(random.nextInt(items.size())));
-		return newContents;
+		return items;
 	}
 
     @Override

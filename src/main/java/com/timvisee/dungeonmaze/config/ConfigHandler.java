@@ -23,6 +23,13 @@ public class ConfigHandler {
     public boolean alwaysAllowOp;
     public boolean authMeReloadedMustBeRegistered;
     public List<String> mobs;
+    public int lootMinItems;
+    public int lootMaxItems;
+    public boolean mobBoostEnabled;
+    public double mobHealthMultiplier;
+    public double mobDamageMultiplier;
+    public double mobSpeedMultiplier;
+    public double mobKnockbackMultiplier;
 
     public void load() {
         // Get the config instance
@@ -39,6 +46,13 @@ public class ConfigHandler {
         authMeReloadedMustBeRegistered = config.getBoolean("authMeReloadedMustBeRegistered", true);
         blockWhiteList = loadBlockWhiteList();
         mobs = config.getStringList("mobs");
+        lootMinItems = Math.max(0, config.getInt("loot.minItems", 3));
+        lootMaxItems = Math.max(lootMinItems, config.getInt("loot.maxItems", 6));
+        mobBoostEnabled = config.getBoolean("mobBoost.enabled", true);
+        mobHealthMultiplier = config.getDouble("mobBoost.healthMultiplier", 1.45D);
+        mobDamageMultiplier = config.getDouble("mobBoost.damageMultiplier", 1.35D);
+        mobSpeedMultiplier = config.getDouble("mobBoost.speedMultiplier", 1.2D);
+        mobKnockbackMultiplier = config.getDouble("mobBoost.knockbackMultiplier", 1.15D);
     }
 
     /**

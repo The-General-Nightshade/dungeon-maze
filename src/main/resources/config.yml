@@ -40,11 +40,28 @@ mobs:
 - Spider
 - Zombie
 
+# Dungeon mobs and loot tuning
+mobBoost:
+    enabled: true
+    healthMultiplier: 1.45
+    damageMultiplier: 1.35
+    speedMultiplier: 1.2
+    knockbackMultiplier: 1.15
+
+loot:
+    defaultWeight: 1
+    file: loot.yml
+    minItems: 3
+    maxItems: 6
+
+portals:
+    enabled: true
+
 # Logging settings
 logging:
     debug: false
     error: true
 
 # Version information of the Dungeon Maze plugin
-versionName: "0.2.4"
-versionCode: 24
+versionName: "0.2.6"
+versionCode: 26
