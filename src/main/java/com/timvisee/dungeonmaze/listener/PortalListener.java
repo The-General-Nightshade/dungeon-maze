@@ -12,6 +12,13 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class PortalListener implements Listener {
 
+    private Material getPortalFrameMaterial() {
+        Material material = Material.getMaterial("ENDER_PORTAL_FRAME");
+        if(material != null)
+            return material;
+        return Material.getMaterial("END_PORTAL_FRAME");
+    }
+
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         if(event.getTo() == null)
@@ -20,7 +27,7 @@ public class PortalListener implements Listener {
         Player player = event.getPlayer();
         World world = player.getWorld();
         Block block = world.getBlockAt(player.getLocation().getBlockX(), player.getLocation().getBlockY() - 1, player.getLocation().getBlockZ());
-        if(block.getType() != Material.END_PORTAL_FRAME)
+        if(block.getType() != getPortalFrameMaterial())
             return;
 
         for(String portalName : PortalManager.getInstance().getPortalNames()) {

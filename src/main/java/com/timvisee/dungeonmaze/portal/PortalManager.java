@@ -128,13 +128,20 @@ public class PortalManager {
         return this.portals.containsKey(name);
     }
 
+    private Material getPortalFrameMaterial() {
+        Material material = Material.getMaterial("ENDER_PORTAL_FRAME");
+        if(material != null)
+            return material;
+        return Material.getMaterial("END_PORTAL_FRAME");
+    }
+
     private void createPortalBlock(Location location) {
         if(location == null || location.getWorld() == null)
             return;
 
         Block block = location.getBlock();
         if(block.getType() == Material.AIR) {
-            block.setType(Material.END_PORTAL_FRAME);
+            block.setType(getPortalFrameMaterial());
         }
     }
 

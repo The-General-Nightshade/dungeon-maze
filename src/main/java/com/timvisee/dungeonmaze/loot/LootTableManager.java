@@ -62,16 +62,12 @@ public class LootTableManager {
 
     private void ensureDefaultFile() {
         final File dir = file.getParentFile();
-        if(!dir.exists() && !dir.mkdirs()) {
+        if(dir != null && !dir.exists() && !dir.mkdirs()) {
             return;
         }
 
-        final FileConfiguration defaultConfig = YamlConfiguration.loadConfiguration(new java.io.File(DungeonMaze.instance.getDataFolder(), FILE_NAME));
-        if(defaultConfig.getConfigurationSection("loot") != null) {
-            try {
-                defaultConfig.save(file);
-            } catch(IOException ignored) {
-            }
+        if(DungeonMaze.instance != null && DungeonMaze.instance.getResource(FILE_NAME) != null) {
+            DungeonMaze.instance.saveResource(FILE_NAME, false);
         }
 
         if(!file.exists()) {
